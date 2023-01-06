@@ -1,16 +1,37 @@
-const user = require('../models/portfolio')
+const userDetails = require('../models/portfolio')
+const { createCustomError } = require('../errors/custom-error')
 
 
-const login = async (req, res) => {
+const login = async (req, res, next) => {
+    try {
+        // Get the details from user
+        const { email, password } = req.body
+
+        const user = await userDetails.findOne({ email })
+
+        if(!user){
+            next(createCustomError("Invalid Credentials", 403))
+        }
+
+
+    } catch (error) {
+        // Get the details from user
+        const { email, password } = req.body
+
+        const user = await userDetails.findOne({ email })
+
+        if(!user){
+            next(createCustomError("Invalid Credentials", 403))
+        }        
+    }
+}
+
+const createUser = async (req, res) => {
     try {
         
     } catch (error) {
         
     }
-}
-
-const createUser = async (req, res) => {
-    console.log('Creating the user')
 }
 
 const updateUser = async (req, res) => {
