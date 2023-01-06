@@ -1,6 +1,12 @@
+const user = require('../models/portfolio')
 
-const getUser = async (req, res) => {
-    console.log('Getting the user..')
+
+const login = async (req, res) => {
+    try {
+        
+    } catch (error) {
+        
+    }
 }
 
 const createUser = async (req, res) => {
