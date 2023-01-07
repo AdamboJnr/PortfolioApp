@@ -50,11 +50,35 @@ const createUser = async (req, res, next) => {
 }
 
 const updateUser = async (req, res) => {
-    console.log('User Updated...');
+    try {
+        const { id } = req.params
+
+        const user = await userDetails.findOneAndUpdate( { id }, req.body, { new: true, runValidators: true })
+
+        if(!user){
+            next(createCustomError("User Doesn't exist"))
+        }
+
+        res.status(200).json({ user })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
-const deleteUser = async (req, res) => {
-    console.log('Deleting the User..');
+const deleteUser = async (req, res,next) => {
+    try {
+        const { id } = req.params
+
+        const deletedUser = await userDetails.findOneAndDelete({ _id: id })
+    
+        if(!deletedUser){
+            next(createCustomError("User Doesn't Exist"))
+        }
+    
+        res.status(200).json({ deletedUser, message: 'Deleted Succesfully'})
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 module.exports = {
