@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const portfolioSchema = new mongoose.model({
+const portfolioSchema = new mongoose.Schema({
     name: {
         required: [true, 'Please Provide the names'],
         type: String,
