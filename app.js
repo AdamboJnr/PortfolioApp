@@ -7,6 +7,7 @@ const errorHandlerMiddleware = require('./middleware/error-handler')
 require('dotenv').config()
 
 app.use(express.json())
+app.set('view-engine', 'ejs')
 
 // Routes
 app.use('/user', userRoute)

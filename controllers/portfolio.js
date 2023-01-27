@@ -23,6 +23,10 @@ const login = asyncWrapper( async (req, res, next) => {
     res.status(200).json({ message: 'Login Succesful' })
 })
 
+const getCreateUserPage = asyncWrapper(async (req, res, next) => {
+    res.render('portfolio')
+})
+
 // Function to Create User
 const createUser = asyncWrapper( async (req, res, next) => {
     const { name, email, password } = req.body
@@ -66,5 +70,5 @@ const deleteUser = asyncWrapper( async (req, res,next) => {
 })
 
 module.exports = {
-    login, createUser, updateUser, deleteUser
+    login, createUser, updateUser, deleteUser,getCreateUserPage
 }
